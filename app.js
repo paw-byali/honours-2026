@@ -135,7 +135,7 @@
         'text-anchor': 'middle',
         fill: lane.color,
         opacity: '0.5',
-        'font-size': '12',
+        'font-size': '14',
         'class': 'lane-label'
       });
       lbl.textContent = lane.label;
@@ -165,7 +165,7 @@
           x: String(pos.x), y: String(pos.y),
           'text-anchor': pos.anchor,
           fill: '#475569',
-          'font-size': '11',
+          'font-size': '13',
           'class': 'edge-label'
         });
         et.textContent = e.label;
@@ -203,7 +203,7 @@
       var text = svgEl('text', {
         x: '14', y: '0',
         fill: '#e5e9f0',
-        'font-size': '14',
+        'font-size': '16',
         'font-weight': '600'
       });
       var lines = n.label.split('\n');
@@ -281,6 +281,7 @@
     }
 
     drawerBody.innerHTML = html;
+    drawerBody.scrollTop = 0;
     showDrawer();
     scrollToNode(nodeId);
     applyVisualState();
@@ -501,7 +502,7 @@
 
   function showDrawer() {
     if (mobileQuery.matches) {
-      drawerEl.style.height = '55dvh';
+      drawerEl.style.height = '70dvh';
       if (mobileNav) mobileNav.classList.add('hidden');
     }
     drawerEl.classList.add('open');
@@ -587,7 +588,7 @@
     if (ratio < 0.3) {
       closeDrawer();
     } else if (ratio < 0.72) {
-      drawerEl.style.height = '55dvh';
+      drawerEl.style.height = '70dvh';
     } else {
       drawerEl.style.height = '90dvh';
     }
@@ -626,5 +627,18 @@
   // ==================================================
 
   render();
+
+  // Welcome toast — show once, remove after animation
+  var toast = document.getElementById('welcomeToast');
+  if (toast) {
+    if (sessionStorage.getItem('toastSeen')) {
+      toast.remove();
+    } else {
+      sessionStorage.setItem('toastSeen', '1');
+      toast.addEventListener('animationend', function (e) {
+        if (e.animationName === 'toastOut') toast.remove();
+      });
+    }
+  }
 
 })();

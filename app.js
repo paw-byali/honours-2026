@@ -38,6 +38,7 @@
 
   let selectedNodeId = null;
   const mobileQuery = window.matchMedia('(max-width: 900px)');
+  var userSheetHeight = null; // tracks user's manual resize choice
 
   // SVG helpers
   function svgEl(tag, attrs) {
@@ -514,13 +515,21 @@
 
   function showDrawer() {
     if (mobileQuery.matches) {
-      drawerEl.style.height = '70dvh';
+      if (!userSheetHeight) {
+        drawerEl.style.height = '85dvh';
+      }
       if (activeUtilityPanel) {
         drawerEl.classList.add('utility-mode');
-        if (mobileNav) mobileNav.classList.remove('hidden');
+        if (mobileNav) {
+          mobileNav.classList.remove('hidden');
+          mobileNav.classList.add('above-backdrop');
+        }
       } else {
         drawerEl.classList.remove('utility-mode');
-        if (mobileNav) mobileNav.classList.add('hidden');
+        if (mobileNav) {
+          mobileNav.classList.add('hidden');
+          mobileNav.classList.remove('above-backdrop');
+        }
       }
     }
     drawerEl.classList.add('open');
@@ -534,8 +543,12 @@
     activeUtilityPanel = null;
     drawerTabs.innerHTML = '';
     if (mobileQuery.matches) {
+      userSheetHeight = null;
       setTimeout(function () { drawerEl.style.height = ''; drawerEl.classList.remove('utility-mode'); }, 300);
-      if (mobileNav) mobileNav.classList.remove('hidden');
+      if (mobileNav) {
+        mobileNav.classList.remove('hidden');
+        mobileNav.classList.remove('above-backdrop');
+      }
     }
     applyVisualState();
   }
@@ -603,12 +616,12 @@
     var vh = window.innerHeight;
     var ratio = currentHeight / vh;
 
-    if (ratio < 0.3) {
+    if (ratio < 0.2) {
       closeDrawer();
-    } else if (ratio < 0.72) {
-      drawerEl.style.height = '70dvh';
     } else {
-      drawerEl.style.height = '90dvh';
+      // keep the user's chosen height
+      userSheetHeight = currentHeight + 'px';
+      drawerEl.style.height = userSheetHeight;
     }
 
     sheetDrag = null;

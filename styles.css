@@ -676,6 +676,11 @@ footer {
   .ann-item .ann-note { font-size: 0.95rem; }
   .ann-item .ann-title { font-size: 0.95rem; }
   .help-desc { font-size: 0.95rem; }
+
+  /* Compact references on mobile */
+  .drawer-body .ann-item { padding: 8px 10px; margin-bottom: 5px; }
+  .drawer-body .ann-note { font-size: 0.82rem; line-height: 1.4; }
+  .drawer-body .section-label { margin: 14px 0 6px; padding-top: 10px; }
 }
 
 .welcome-toast {

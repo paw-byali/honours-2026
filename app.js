@@ -40,6 +40,12 @@
   const mobileQuery = window.matchMedia('(max-width: 900px)');
   var userSheetHeight = null; // tracks user's manual resize choice
 
+  function trackEvent(path, title) {
+    if (typeof goatcounter !== 'undefined') {
+      goatcounter.count({ path: path, title: title, event: true });
+    }
+  }
+
   // SVG helpers
   function svgEl(tag, attrs) {
     const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -266,6 +272,10 @@
   // ==================================================
 
   function openDrawerForNode(nodeId) {
+    if (selectedNodeId !== nodeId) {
+      var n = nodeById(nodeId);
+      if (n) trackEvent('node/' + nodeId, 'Node: ' + n.label.replace('\n', ' '));
+    }
     selectedNodeId = nodeId;
 
     var node = nodeById(nodeId);
@@ -323,6 +333,7 @@
 
   function navigateNode(direction) {
     if (!selectedNodeId) return;
+    trackEvent('nav/' + (direction === 1 ? 'next' : 'prev'), direction === 1 ? 'Nav: Next' : 'Nav: Previous');
     var idx = nodeOrder.indexOf(selectedNodeId);
     var newIdx = idx + direction;
     if (newIdx >= 0 && newIdx < nodeOrder.length) {
@@ -347,6 +358,7 @@
   var activeUtilityPanel = null;
 
   function openUtilityPanel(panelKey) {
+    trackEvent('panel/' + panelKey, 'Panel: ' + panelKey.charAt(0).toUpperCase() + panelKey.slice(1));
     selectedNodeId = null;
     activeUtilityPanel = panelKey;
 
@@ -656,6 +668,20 @@
   // ==================================================
   // INIT
   // ==================================================
+
+  // Event delegation for contact & DOI link clicks
+  drawerBody.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('mailto:') === 0) {
+      trackEvent('contact/email', 'Contact: Email');
+    } else if (href.indexOf('linkedin.com') !== -1) {
+      trackEvent('contact/linkedin', 'Contact: LinkedIn');
+    } else if (href.indexOf('doi.org') !== -1 || href.indexOf('seedtest.org') !== -1) {
+      trackEvent('ref/doi-click', 'Reference: DOI Click');
+    }
+  });
 
   render();
 

@@ -68,7 +68,7 @@ window.PROJECT = {
   edges: [
     { from: 'problem1',  to: 'problem2',  label: 'narrows to' },
     { from: 'tech1',     to: 'tech2',     label: 'produces' },
-    { from: 'method1',   to: 'method2',   label: 'implemented through' },
+    { from: 'method1',   to: 'method2',   label: 'implemented\nthrough' },
     { from: 'method2',   to: 'resp1',     label: 'produces' },
     { from: 'resp1',     to: 'resp2',     label: 'deepens to' },
     { from: 'resp2',     to: 'resp3',     label: 'deepens to' }

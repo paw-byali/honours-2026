@@ -168,7 +168,19 @@
           'font-size': '17',
           'class': 'edge-label'
         });
-        et.textContent = e.label;
+        var elines = e.label.split('\n');
+        if (elines.length === 1) {
+          et.textContent = e.label;
+        } else {
+          elines.forEach(function (line, i) {
+            var ts = svgEl('tspan', {
+              x: String(pos.x),
+              dy: i === 0 ? '0' : '18'
+            });
+            ts.textContent = line;
+            et.appendChild(ts);
+          });
+        }
         svg.appendChild(et);
       }
     });

@@ -656,6 +656,11 @@ footer {
     opacity: 0.5;
   }
 
+  .drawer.utility-mode {
+    bottom: 52px;
+    bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  }
+
   .drawer-backdrop {
     background: rgba(0, 0, 0, 0.15);
   }

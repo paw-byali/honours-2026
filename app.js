@@ -135,7 +135,7 @@
         'text-anchor': 'middle',
         fill: lane.color,
         opacity: '0.5',
-        'font-size': '16',
+        'font-size': '18',
         'class': 'lane-label'
       });
       lbl.textContent = lane.label;
@@ -165,7 +165,7 @@
           x: String(pos.x), y: String(pos.y),
           'text-anchor': pos.anchor,
           fill: '#475569',
-          'font-size': '15',
+          'font-size': '17',
           'class': 'edge-label'
         });
         et.textContent = e.label;
@@ -203,7 +203,7 @@
       var text = svgEl('text', {
         x: '14', y: '0',
         fill: '#e5e9f0',
-        'font-size': '16',
+        'font-size': '18',
         'font-weight': '600'
       });
       var lines = n.label.split('\n');
@@ -211,7 +211,7 @@
       lines.forEach(function (line, i) {
         var ts = svgEl('tspan', {
           x: '14',
-          dy: i === 0 ? String(startY) : '19'
+          dy: i === 0 ? String(startY) : '21'
         });
         ts.textContent = line;
         text.appendChild(ts);
@@ -503,7 +503,13 @@
   function showDrawer() {
     if (mobileQuery.matches) {
       drawerEl.style.height = '70dvh';
-      if (mobileNav) mobileNav.classList.add('hidden');
+      if (activeUtilityPanel) {
+        drawerEl.classList.add('utility-mode');
+        if (mobileNav) mobileNav.classList.remove('hidden');
+      } else {
+        drawerEl.classList.remove('utility-mode');
+        if (mobileNav) mobileNav.classList.add('hidden');
+      }
     }
     drawerEl.classList.add('open');
     backdrop.classList.add('open');
@@ -516,7 +522,7 @@
     activeUtilityPanel = null;
     drawerTabs.innerHTML = '';
     if (mobileQuery.matches) {
-      setTimeout(function () { drawerEl.style.height = ''; }, 300);
+      setTimeout(function () { drawerEl.style.height = ''; drawerEl.classList.remove('utility-mode'); }, 300);
       if (mobileNav) mobileNav.classList.remove('hidden');
     }
     applyVisualState();

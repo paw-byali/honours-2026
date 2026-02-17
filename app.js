@@ -135,7 +135,7 @@
         'text-anchor': 'middle',
         fill: lane.color,
         opacity: '0.5',
-        'font-size': '14',
+        'font-size': '16',
         'class': 'lane-label'
       });
       lbl.textContent = lane.label;
@@ -165,7 +165,7 @@
           x: String(pos.x), y: String(pos.y),
           'text-anchor': pos.anchor,
           fill: '#475569',
-          'font-size': '13',
+          'font-size': '15',
           'class': 'edge-label'
         });
         et.textContent = e.label;

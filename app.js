@@ -403,8 +403,7 @@
       '<p class="relevance-text">This site is a living document. It exists to communicate the project clearly, invite collaboration, and keep the science in the open from the start. It will be updated as the research develops.</p>' +
       '<div class="section-label">Project Status</div>' +
       '<p class="relevance-text">This project hasn\u2019t begun.</p>' +
-      '<div class="section-label">Acknowledgements</div>' +
-      '<p class="relevance-text" style="font-style:italic; color:var(--text-dim);">This section will be updated as the project develops to acknowledge the people, departments, and organisations who contribute their time, expertise, and support.</p>';
+      '';
   }
 
   function renderHelp() {
@@ -483,29 +482,29 @@
   function renderContact() {
     return '' +
       '<div class="contact-section">' +
-        '<p class="blurb">' + esc(meta.cta) + '</p>' +
+        '<p class="blurb">Looking for advisors, collaborators, and people happy to share what they know. Students, researchers, scientists, engineers \u2014 all welcome.</p>' +
       '</div>' +
       '<div class="contact-section">' +
         '<h3>What I\u2019m looking for</h3>' +
         '<div class="ann-item">' +
           '<div class="ann-title">Supervisors</div>' +
-          '<div class="ann-note">Looking for primary and secondary supervisors with experience in relevant fields.</div>' +
+          '<div class="ann-note">Primary and secondary, with experience in any of the areas below.</div>' +
         '</div>' +
         '<div class="ann-item">' +
           '<div class="ann-title">Advisors & Mentors</div>' +
-          '<div class="ann-note">People willing to share their expertise, guidance, or experience in any of the areas this project touches.</div>' +
+          '<div class="ann-note">Anyone willing to share guidance or experience \u2014 doesn\u2019t need to be formal.</div>' +
         '</div>' +
         '<div class="ann-item">' +
-          '<div class="ann-title">PAW & Plasma Engineering</div>' +
-          '<div class="ann-note">Plasma-activated water generation, RONS diagnostics, parameter optimisation.</div>' +
+          '<div class="ann-title">PAW & Plasma</div>' +
+          '<div class="ann-note">Plasma-activated water systems, characterisation, RONS and water chemistry.</div>' +
         '</div>' +
         '<div class="ann-item">' +
           '<div class="ann-title">Plant Stress Physiology</div>' +
-          '<div class="ann-note">Salinity stress responses, biomarker assay protocols for Arabidopsis.</div>' +
+          '<div class="ann-note">Salinity stress responses, biomarker assays.</div>' +
         '</div>' +
         '<div class="ann-item">' +
           '<div class="ann-title">Molecular & Epigenetics</div>' +
-          '<div class="ann-note">Bisulfite sequencing, MSAP, methylation analysis.</div>' +
+          '<div class="ann-note">Bioassays, techniques, bioinformatics.</div>' +
         '</div>' +
         '<div class="ann-item">' +
           '<div class="ann-title">Ecological Framing</div>' +
